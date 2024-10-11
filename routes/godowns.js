@@ -1,8 +1,10 @@
 import express from "express";
 import { addGodown,getGodowns,getGodownById,getGodownByParentId, getParentGodowns,deleteGodown,renameGodown,changeParentGodown} from "../controller/godownController.js";
-
+import ensureAuthenticated from "../middlewares/Authentication.js";
 const router = express.Router();
 
+
+router.use(ensureAuthenticated);
 router.get("/", (req, res) => {
   res.send("Hello from godowns route.");
 });
