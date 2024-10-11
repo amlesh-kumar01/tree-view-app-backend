@@ -1,10 +1,9 @@
 import { Schema as _Schema, model } from 'mongoose';
-import { v4 as uuidv4 } from 'uuid';
-
+import { generateUUID } from '../utils/uuidValidator.js';
 const Schema = _Schema;
 
 const godownSchema = new Schema({
-  _id: { type: String, default: uuidv4 },
+  _id: { type: String, default: generateUUID },
   name: { type: String, required: true },
   parent_godown: { type: String, default: null }
 }, { _id: true });

@@ -1,9 +1,9 @@
 import { Schema as _Schema, model } from 'mongoose';
-
+import { generateUUID } from '../utils/uuidValidator.js';
 const Schema = _Schema;
 
 const itemSchema = new Schema({
-    item_id: { type: String, default:uuidv4},
+    _id: { type: String, default: generateUUID},
     name: { type: String, required: true },
     quantity: { type: Number, required: true },
     category: { type: String, required: true },
@@ -17,8 +17,8 @@ const itemSchema = new Schema({
         warranty_years: { type: Number, required: true }
     },
     image_url: { type: String, required: true }
-});
-godownSchema.pre('save', function(next) {
+},{_id: true});
+itemSchema.pre('save', function(next) {
     this.status = this.quantity > 0 ? "in_stock" : "out_of_stock";
     next();
 });  

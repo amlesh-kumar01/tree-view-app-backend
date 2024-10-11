@@ -4,7 +4,7 @@ import cors from "cors";
 import express , {json} from "express";
 import cookieParser from "cookie-parser";
 import GodownRoutes from "./routes/godowns.js"
-// import itemsRoutes from "./routes/itemsRoutes";
+import itemsRoutes from "./routes/items.js";
 
 const app = express();
 config();
@@ -37,7 +37,7 @@ app.get("/", (req, res) => { res.status(200).send("Welcome to the godown managem
 
 app.use("/godowns", GodownRoutes);
 
-// app.use("/items", itemsRoutes);
+app.use("/items", itemsRoutes);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
