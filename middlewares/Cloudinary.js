@@ -3,7 +3,6 @@ import { config } from "dotenv";
 import multer from "multer";
 import streamifier from "streamifier";
 
-
 config();
 
 const upload = multer(); 
@@ -20,7 +19,6 @@ const uploadImage = (req, res, next) => {
     return next(); // Proceed to the next middleware/route handler if no file is uploaded
   }
 
-
   const folderName = req.body.godown_id; 
 
   try {
@@ -31,7 +29,7 @@ const uploadImage = (req, res, next) => {
           return res.status(500).json({
             message: "Upload to Cloudinary failed.",
             error: error.message,
-            status: 'failure'
+            success: false
           });
         }
 
@@ -45,7 +43,7 @@ const uploadImage = (req, res, next) => {
     return res.status(500).json({
       message: "An unexpected error occurred during the upload process.",
       error: error.message,
-      status:'failure'
+      success: false
     });
   }
 
@@ -53,5 +51,3 @@ const uploadImage = (req, res, next) => {
 };
 
 export { upload, uploadImage };
-
-

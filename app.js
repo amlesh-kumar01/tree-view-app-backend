@@ -5,7 +5,7 @@ import express , {json} from "express";
 import cookieParser from "cookie-parser";
 import GodownRoutes from "./routes/godowns.js"
 import itemsRoutes from "./routes/items.js";
-
+import AuthRoutes from "./routes/auth.js";
 const app = express();
 config();
 const corsOrigin ={
@@ -34,6 +34,8 @@ connect(uri)
   console.log(err);
 });
 app.get("/", (req, res) => { res.status(200).send("Welcome to the godown management system"); });
+
+app.use("/user", AuthRoutes);
 
 app.use("/godowns", GodownRoutes);
 
