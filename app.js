@@ -8,11 +8,13 @@ import itemsRoutes from "./routes/items.js";
 import AuthRoutes from "./routes/auth.js";
 const app = express();
 config();
-const corsOrigin ={
-  origin: 'https://inverntory-insight.vercel.app',
-  credentials:true,
-  optionSuccessStatus:200
-}
+const corsOptions = {
+  origin: '*', 
+  methods: '*', 
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
 app.use(json());
 app.use(cookieParser());
 app.use(cors(corsOrigin));
