@@ -9,7 +9,7 @@ import AuthRoutes from "./routes/auth.js";
 const app = express();
 config();
 const corsOrigin ={
-  origin: 'http://localhost:3000',
+  origin: 'https://tree-view-app-backend.onrender.com',
   credentials:true,
   optionSuccessStatus:200
 }
