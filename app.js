@@ -8,16 +8,16 @@ import itemsRoutes from "./routes/items.js";
 import AuthRoutes from "./routes/auth.js";
 const app = express();
 config();
-// const corsOptions = {
-//   origin: '*', // Allows all origins
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allows all common HTTP methods
-//   credentials: true,
-//   optionsSuccessStatus: 200
-// };
+
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+  origin: 'https://inverntory-insight.vercel.app', // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Allow all HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+  credentials: true, // Allow cookies to be sent
+}));
 
 const port = process.env.PORT || 8000;
 
