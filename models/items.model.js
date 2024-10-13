@@ -11,11 +11,7 @@ const itemSchema = new Schema({
     status: { type: String, default: "out_of_stock"},
     godown_id: { type: String, required: true },
     brand: { type: String, required: true },
-    attributes: {
-        type: { type: String, required: true },
-        material: { type: String, required: true },
-        warranty_years: { type: Number, required: true }
-    },
+    attributes: { type: Object, required: true },
     image_url: { type: String, required: true }
 },{_id: true});
 itemSchema.pre('save', function(next) {

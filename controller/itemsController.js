@@ -210,3 +210,24 @@ export const getItemsByCategory = async (req, res) => {
     res.status(500).json({ message: 'Error getting items', error: error.message, success: false });
   }
 };
+export const deleteItem = async (req, res) => {
+  const { _id } = req.params;
+
+  // Validate UUID
+  if (!isValidUUID(_id)) {
+    return res.status(400).json({ message: 'Invalid item ID', success: false });
+  }
+
+  try {
+    const item = await Item.findByIdAndDelete(_id);
+
+    if (!item) {
+      return res.status(404).json({ message: 'Item not found', success: false });
+    }
+
+    res.status(200).json({ message: 'Item deleted successfully', success: true });
+
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting item', error: error.message, success: false });
+  }
+}
