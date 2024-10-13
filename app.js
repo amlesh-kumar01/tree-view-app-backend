@@ -17,7 +17,7 @@ const corsOptions = {
 
 app.use(json());
 app.use(cookieParser());
-app.use(cors(corsOrigin));
+app.use(cors(corsOptions));
 
 const port = process.env.PORT || 8000;
 
