@@ -9,7 +9,7 @@ import AuthRoutes from "./routes/auth.js";
 const app = express();
 config();
 const corsOrigin ={
-  origin: 'https://tree-view-app-backend.onrender.com',
+  origin: 'https://inverntory-insight.vercel.app',
   credentials:true,
   optionSuccessStatus:200
 }
