@@ -8,16 +8,16 @@ import itemsRoutes from "./routes/items.js";
 import AuthRoutes from "./routes/auth.js";
 const app = express();
 config();
-const corsOptions = {
-  origin: '*', // Allows all origins
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allows all common HTTP methods
-  credentials: true,
-  optionsSuccessStatus: 200
-};
+// const corsOptions = {
+//   origin: '*', // Allows all origins
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allows all common HTTP methods
+//   credentials: true,
+//   optionsSuccessStatus: 200
+// };
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors(corsOptions));
+app.use(cors());
 
 const port = process.env.PORT || 8000;
 
