@@ -12,13 +12,13 @@ config();
 //https://api.render.com/deploy/srv-cs5uvg5umphs73b32fkg?key=KRFgvxDXGxk      //render deploy link
 app.use(express.json());
 app.use(cookieParser());
-// app.use(cors({
-//   origin: 'https://inverntory-insight.vercel.app', // Allow all origins
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Allow all HTTP methods
-//   allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
-//   credentials: true, // Allow cookies to be sent
-// }));
-app.use(cors());
+app.use(cors({
+  origin: 'https://inverntory-insight.vercel.app', // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Allow all HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+  credentials: true, // Allow cookies to be sent
+}));
+// app.use(cors());
 
 const port = process.env.PORT || 8000;
 
