@@ -26,6 +26,7 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
+app.options('*', cors());
 
 const uri = process.env.MONGO_URI;
 connect(uri)
