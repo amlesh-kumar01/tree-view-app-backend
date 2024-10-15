@@ -140,7 +140,7 @@ export const removeQuantity = async (req, res) => {
     }
 
     if (item.quantity < quantity) {
-      return res.status(400).json({ message: 'Insufficient quantity', success: false });
+      return res.status(200).json({ message: 'Insufficient quantity', success: false });
     }
 
     item.quantity -= quantity;
