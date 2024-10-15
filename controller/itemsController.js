@@ -231,3 +231,36 @@ export const deleteItem = async (req, res) => {
     res.status(500).json({ message: 'Error deleting item', error: error.message, success: false });
   }
 }
+
+export const searchItems = async (req, res) => {
+  const { searchQuery } = req.params;
+  console.log(searchQuery);
+  // Validate search query
+  if (!searchQuery || typeof searchQuery !== 'string') {
+    return res.status(400).json({ error: 'Invalid search query. Please provide a valid string.' });
+  }
+
+  const cleanedQuery = searchQuery.trim().toLowerCase();
+  const searchRegex = new RegExp(cleanedQuery, 'i');
+
+  try {
+    // Use a case-insensitive regex to match the search query
+    const items = await Item.find({
+      $or: [
+          { name: searchRegex },
+          { category: searchRegex },
+          { brand: searchRegex },
+          // { attributes: { $regex: searchRegex, $options: 'i' } }
+      ]
+  });
+  items.sort((a, b) => b.quantity - a.quantity);
+    if (items.length === 0) {
+      return res.status(404).json({ message: 'No items found',  success: false });
+    }
+
+    res.status(200).json({ message: 'Items fetched successfully', items, success: true });
+
+  } catch (error) {
+    res.status(500).json({ message: 'Error getting items', error: error.message, success: false });
+  }
+}
